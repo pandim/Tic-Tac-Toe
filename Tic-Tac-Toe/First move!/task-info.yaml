@@ -288,6 +288,74 @@ files:
         }
     }
   learner_created: false
+- name: src/tictactoe/Main.java
+  visible: true
+  text: |
+    package tictactoe;
+
+    import java.util.Scanner;
+
+    public class Main {
+        private static char[] pole = new char[8];
+
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter cells: ");
+            pole = scanner.nextLine().toCharArray();
+            strokenput();
+            display();
+    //        test();
+        }
+
+        private static void strokenput() {
+        }
+
+
+        public static boolean ifWin(char sign) {
+            return pole[0] == sign && pole[1] == sign && pole[2] == sign ||
+                    pole[3] == sign && pole[4] == sign && pole[5] == sign ||
+                    pole[6] == sign && pole[7] == sign && pole[8] == sign ||
+                    pole[0] == sign && pole[3] == sign && pole[6] == sign ||
+                    pole[1] == sign && pole[4] == sign && pole[7] == sign ||
+                    pole[2] == sign && pole[5] == sign && pole[8] == sign ||
+                    pole[0] == sign && pole[4] == sign && pole[8] == sign ||
+                    pole[2] == sign && pole[4] == sign && pole[6] == sign;
+        }
+
+        public static int counter(char sign) {
+            int i = 0;
+            for (char ch : pole) {
+                if (ch == sign) {
+                    i++;
+                }
+            }
+            return i;
+        }
+
+        private static void test() {
+            if (ifWin('X') && ifWin('O') || Math.abs(counter('X') - counter('O')) > 1) {
+                System.out.println("Impossible");
+            } else if (ifWin('X')) {
+                System.out.println("X wins");
+            } else if (ifWin('O')) {
+                System.out.println("O wins");
+            } else if (counter('_') > 0) {
+                System.out.println("Game not finished");
+            } else {
+                System.out.println("Draw");
+            }
+        }
+
+        private static void display(){
+            System.out.println("---------");
+            for (int i = 0; i < pole.length; i += 3) {
+                System.out.print("| " + pole[i] + " " + pole[i + 1] + " " + pole[i + 2] + " |\n");
+            }
+            System.out.println("---------");
+
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/48/stages/258/implement
-status: Unchecked
-record: -1
+status: Solved
+record: 4
